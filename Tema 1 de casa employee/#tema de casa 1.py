@@ -4,7 +4,7 @@ class Employee:
     """Common base class for all employees"""
     empCount = 0
 
-    def __init__(self, name, salary):
+    def __init__(self, name, salary):#constructor
         self.name = name
         self.salary = salary
         self.tasks = {}
@@ -17,7 +17,7 @@ class Employee:
     def display_employee(self):
         print("Name : ", self.name, ", Salary: ", self.salary)
 
-    def __del__ (self):
+    def __del__ (self):#destructor?
         Employee.empCount -=1
 
 
@@ -31,20 +31,7 @@ class Employee:
 ##        self.tasks[task_name] = status
     def modify_task(self, task_name, status="New"):
         self.tasks[task_name]=status
-    #SUPLIMENTAR
-    def display_task(self, status):
-        print(f"Taskuri cu statusul {status}")
-        for name in self.tasks.keys():
-            if self.tasks[name] == status:
-                print(name)
-    def sup_update_salary(self, new_salary):
-        self.update_salary(new_salary)
-        print(f"Updated salary: {self.salary}")
-        print("Update salary test passed.\n")
-    def sup_modify_task(self, task_name, status):
-        self.modify_task(task_name, status)
-        print(f"Modified tasks: {self.tasks}")
-        print("Modify task test passed.\n")
+   
 
 #clasa mostenitoare
 class Manager(Employee):
@@ -56,18 +43,21 @@ class Manager(Employee):
         Manager.mgrCount +=1
 
     def display_employee(self, display_option):#afisare info angajati
-        if display_option==0:
+        if display_option % 3 ==0:
             print("Name: ", self.name)
-        elif display_option==1:
+        elif display_option % 3 ==1:
             print("Salary: ", self.salary)
-        elif display_option==2:
+        elif display_option % 3 ==2:
             print("Department: ", self.department)
+    #SUPLIMENTAR
+    
+
     
 
 # Creați Y/3 obiecte ale clasei Manager
 Y = 6  #Y=6 => 6/3=2 obiecte Manager
-manager1 = Manager("Manager1", 5000, "IT Department")
-manager2 = Manager("Manager2", 6000, "HR Department")
+manager1 = Manager("Manager1", 5000, "E03")
+manager2 = Manager("Manager2", 6000, "E03")
 
 # Apelați metoda ‘display_employee’ pentru obiectele din clasa Manager
 for manager in [manager1, manager2]:
@@ -86,12 +76,26 @@ print(f"Manager Count: {manager1.mgrCount}")    #manager
 
 #functii suplimentare 
 
-def suplimentar():
-    #Crearea unui obiect Employee
-    sup_employee = Employee("supEmployee", 3000)
+def test_employee_class():
+    employee = Employee("TestEmployee", 4500)
+    if employee.name != "TestEmployee" or employee.salary != 4500 or employee.tasks != {}:
+        print("Test failed: Initializarea corectă a obiectului Employee.")
 
-    #Teste pentru Employee
-    sup_employee.sup_update_salary(3500)
-    sup_employee.sup_modify_task("New Task Sup","New Sup")
+    employee.update_salary(5000)
+    if employee.salary != 5000:
+        print("Test failed: Actualizarea salariului.")
 
-suplimentar()
+    employee.modify_task("Task1", "InProgress")
+    if employee.tasks["Task1"] != "InProgress":
+        print("Test failed: Adăugarea și modificarea unei sarcini.")
+
+    if Employee.empCount != 0:
+        print("Test failed: Numărul de angajați nu a fost decrementat corect la ștergere.")
+"""
+print('\n')
+def test_manager_class():
+    #folosirea assert in loc de if
+    #output.append
+"""
+test_employee_class()
+#test_manager_class()
