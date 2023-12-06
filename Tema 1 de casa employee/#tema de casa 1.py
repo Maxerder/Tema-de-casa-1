@@ -39,7 +39,7 @@ class Manager(Employee):
 
     def __init__(self, name, salary, department):
         super().__init__(name, salary)
-        self.department = department
+        self.department = f"E03_{department}
         Manager.mgrCount +=1
 
     def display_employee(self, display_option):#afisare info angajati
@@ -56,8 +56,8 @@ class Manager(Employee):
 
 # Creați Y/3 obiecte ale clasei Manager
 Y = 6  #Y=6 => 6/3=2 obiecte Manager
-manager1 = Manager("Manager1", 5000, "E03")
-manager2 = Manager("Manager2", 6000, "E03")
+manager1 = Manager("Manager1", 5000, "1stTeam")
+manager2 = Manager("Manager2", 6000, "2ndTeam")
 
 # Apelați metoda ‘display_employee’ pentru obiectele din clasa Manager
 for manager in [manager1, manager2]:
